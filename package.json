@@ -26,6 +26,8 @@
     "eslint-plugin-jest": "^24.3.6",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-vue": "^6.2.2",
+    "sass": "^1.26.2",
+    "sass-loader": "^8.0.2",
     "vue-jest": "^3.0.7",
     "vue-template-compiler": "^2.6.11"
   }
