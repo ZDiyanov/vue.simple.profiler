@@ -8,9 +8,9 @@ export default {
         last: '',
       },
       contact: {
-        phone: null,
+        phone: '',
         country: '',
-        postalCode: null,
+        postCode: '',
         address: '',
       },
       hobbies: [],

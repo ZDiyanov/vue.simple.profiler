@@ -54,6 +54,8 @@ const actions = {
       hobbies,
     };
 
+    console.log(nextUser);
+
     const nextLogger = {
       ...state,
       user: nextUser,
@@ -68,7 +70,7 @@ const actions = {
 
     return router.replace({ name: 'profile' });
   },
-  logout: () => {
+  switchUserProfile: () => {
     store.dispatch('logger/reset');
 
     return router.replace({ name: 'home' });

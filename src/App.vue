@@ -12,7 +12,7 @@
       return {
         title,
         titleTemplate(viewTitle) {
-          const appTitle = 'Modis Profile App';
+          const appTitle = 'Profile Logger';
 
           return viewTitle !== appTitle
             ? `${appTitle} | ${viewTitle}`
