@@ -56,6 +56,20 @@ export const isUndef = val => typeof val === 'undefined';
 export const isBool = val => typeof val === 'boolean';
 
 /**
+ * @description Is non empty string
+ * @param val
+ * @returns {boolean|boolean}
+ */
+ export const isNonEmptyStr = val => isStr(val) && val !== '';
+
+ /**
+  * @description Is non empty array
+  * @param val
+  * @returns {boolean|boolean}
+  */
+ export const isNonEmptyArr = val => isArr(val) && val.length > 0;
+
+/**
  * @description To int
  * @param val
  * @returns {number}

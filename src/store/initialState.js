@@ -2,10 +2,10 @@ export default {
   logger: {
     user: {
       id: null,
-      name: {
-        first: '',
-        middle: '',
-        last: '',
+      personal: {
+        firstName: '',
+        middleName: '',
+        lastName: '',
       },
       contact: {
         phone: '',
