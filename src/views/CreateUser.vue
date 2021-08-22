@@ -7,11 +7,13 @@
 </template>
 
 <script>
+  import uid from 'uid';
+
   export default {
     data() {
       return {
         dummyUser: {
-          id: 2,
+          id: uid(),
           name: {
             first: 'Zhivko',
             middle: 'Diyanov',
