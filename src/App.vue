@@ -1,18 +1,25 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="@/assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <router-view />
   </div>
 </template>
 
 <script>
-  import HelloWorld from '@/components/HelloWorld';
-
   export default {
-    name: 'App',
-    components: {
-      HelloWorld
-    },
+    metaInfo() {
+      const { title } = this;
+
+      return {
+        title,
+        titleTemplate(viewTitle) {
+          const appTitle = 'Modis Profile App';
+
+          return viewTitle !== appTitle
+            ? `${appTitle} | ${viewTitle}`
+            : appTitle;
+        }
+      };
+    }
   };
 </script>
 
