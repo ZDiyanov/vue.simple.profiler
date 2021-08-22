@@ -45,16 +45,14 @@ export const getters = {
 const actions = {
   setUserProfile: ({ state, commit }, data) => {
     const { user, persist = false } = data;
-    const { id, name, contact, hobbies } = user;
+    const { id, personal, contact, hobbies } = user;
 
     const nextUser = {
       id,
-      name,
+      personal,
       contact,
       hobbies,
     };
-
-    console.log(nextUser);
 
     const nextLogger = {
       ...state,
@@ -68,7 +66,7 @@ const actions = {
 
     commit('SET', nextLogger);
 
-    return router.replace({ name: 'profile' });
+    return router.replace({ name: 'profile-details' });
   },
   switchUserProfile: () => {
     store.dispatch('logger/reset');
@@ -78,7 +76,6 @@ const actions = {
   reset: ({ commit }) => (
     commit('SET', initialState.logger)
   ),
-  resetAll: () => resetStores(store),
   set: ({ commit }, logger) => {
     commit('SET', logger);
   }

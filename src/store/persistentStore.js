@@ -13,7 +13,7 @@ export default new VuexPersistence({
       user: {
         ...initialState.logger.user,
         id: state.logger.user.id,
-        name: state.logger.user.name,
+        personal: state.logger.user.personal,
         contact: state.logger.user.contact,
         hobbies: state.logger.user.hobbies,
       },

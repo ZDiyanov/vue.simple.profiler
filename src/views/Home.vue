@@ -4,7 +4,7 @@
 
     <router-link to="/create">Log a new user profile</router-link>
 
-    <div>
+    <div v-if="hasStoredProfiles">
       <p>Logged User Profiles:</p>
 
       <ul>
@@ -16,7 +16,7 @@
             href="#"
             @click.prevent="setUserProfile(item)"
           >
-            {{ `${item.name.first} ${item.name.last}` }}
+            {{ `${item.personal.firstName} ${item.personal.lastName}` }}
           </a>
         </li>
       </ul>
@@ -27,22 +27,20 @@
       >
         Delete Existing Profiles
       </a>
-
-      <a
-        href="#"
-        @click.prevent="resetApp"
-      >
-        Reset the app
-      </a>
     </div>
   </div>
 </template>
 
 <script>
+  import { isNonEmptyArr } from '@/utils';
+
   export default {
     computed: {
       profilesList() {
         return this.$store.getters['persistentData/users'];
+      },
+      hasStoredProfiles() {
+        return isNonEmptyArr(this.profilesList);
       },
     },
     methods: {

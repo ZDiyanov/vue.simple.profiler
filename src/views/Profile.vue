@@ -44,9 +44,9 @@
         return this.$store.getters['logger/user'];
       },
       fullName() {
-        const { first, middle, last } = this.userProfile.name;
+        const { firstName, middleName, lastName } = this.userProfile.personal;
 
-        return `${first} ${middle} ${last}`;
+        return `${firstName} ${middleName} ${lastName}`;
       }
     },
     methods: {
@@ -56,10 +56,10 @@
       },
     },
     metaInfo() {
-      const { first, last } = this.userProfile.name;
+      const { firstName, lastName } = this.userProfile.personal;
 
       return {
-        title: `${first} ${last}`
+        title: `${firstName} ${lastName}`
       };
     },
   };
