@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-cycle
 import router from '@/router';
 // eslint-disable-next-line import/no-cycle
+import store from '@/store';
 import initialState from '@/store/initialState';
 import { isObj } from '@/utils';
 
