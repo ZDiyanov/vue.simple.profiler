@@ -15,7 +15,7 @@
         v-model="form.country"
         id="country-selectfield"
         label="Country"
-        :option-list="dummyList"
+        :option-list="countryList"
         :error-messages="countryErrors"
         required
       />
@@ -30,6 +30,17 @@
         required
       />
 
+      <text-field
+        v-model="form.postCode"
+        type="text"
+        id="postCode-textfield"
+        label="Post Code"
+        :value="form.postCode"
+        :disabled="!isCountrySet"
+        :error-messages="postCodeErrors"
+        required
+      />
+
       <slot />
     </form>
   </div>
@@ -37,15 +48,10 @@
 
 <script>
   import { required, minLength, maxLength, helpers } from 'vuelidate/lib/validators';
+  import { isNonEmptyStr } from '@/utils';
   import TextField from '@/components/base/TextField';
   import SelectField from '@/components/base/SelectField';
-
-  // Custom phone number validator
-  const phoneNumFormat = (value) => {
-    const format = /^\+[0-9]+$/i;
-
-    return !helpers.req(value) || format.test(value);
-  };
+  import countryList from '@/configs/countries';
 
   export default {
     components: {
@@ -56,7 +62,10 @@
       form: {
         phone: {
           required,
-          phoneNumFormat,
+          phoneNumber(value) {
+            const format = /^\+[0-9]+$/i;
+            return !helpers.req(value) || format.test(value);
+          },
           minLength: minLength(11),
           maxLength: maxLength(13),
         },
@@ -65,6 +74,17 @@
         },
         address: {
           required,
+        },
+        postCode: {
+          required,
+          postCodeFormat(value) {
+            if (this.isCountrySet) {
+              const format = countryList[this.form.country].postCode;
+              return !helpers.req(value) || format.test(value);
+            }
+
+            return true;
+          },
         },
       }
     },
@@ -79,11 +99,11 @@
           errors.push('Phone number is required');
         }
         if (
-          !this.$v.form.phone.phoneNumFormat
+          !this.$v.form.phone.phoneNumber
           || !this.$v.form.phone.minLength
           || !this.$v.form.phone.maxLength
         ) {
-          errors.push('Phone number must be valid');
+          errors.push('Phone number format must be valid');
         }
 
         return errors;
@@ -112,6 +132,24 @@
 
         return errors;
       },
+      postCodeErrors() {
+        const errors = [];
+
+        if (!this.$v.form.postCode.$dirty) {
+          return errors;
+        }
+        if (!this.$v.form.postCode.required) {
+          errors.push('Post Code is required');
+        }
+        if (!this.$v.form.postCode.postCodeFormat) {
+          errors.push('Post Code format must be valid');
+        }
+
+        return errors;
+      },
+      isCountrySet() {
+        return isNonEmptyStr(this.form.country);
+      },
     },
     props: {
       form: {
@@ -122,7 +160,7 @@
     data() {
       return {
         isValid: null,
-        dummyList: ['Bulgaria', 'United States'],
+        countryList,
       };
     },
     methods: {

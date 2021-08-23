@@ -25,11 +25,11 @@
           value
         ></option>
         <option
-          v-for="(value, index) in optionList"
+          v-for="(item, key, index) in optionList"
           :key="index"
-          :value="value"
+          :value="key"
         >
-          {{ value }}
+          {{ item.name }}
         </option>
       </select>
 
@@ -64,7 +64,7 @@ import { isNull, isNonEmptyStr } from '@/utils';
 export default {
   props: {
     optionList: {
-      type: Array,
+      type: Object,
       required: true,
     },
     value: {
