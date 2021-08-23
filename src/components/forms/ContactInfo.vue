@@ -1,45 +1,53 @@
 <template>
-  <div>
+  <div class="form">
     <form @submit.prevent="onSubmit" novalidate>
-      <text-field
-        v-model="form.phone"
-        type="text"
-        id="phone-textfield"
-        label="Phone"
-        :value="form.phone"
-        :error-messages="phoneErrors"
-        required
-      />
+      <div class="form__row">
+        <text-field
+          v-model="form.phone"
+          type="text"
+          id="phone-textfield"
+          label="Phone"
+          :value="form.phone"
+          :error-messages="phoneErrors"
+          required
+        />
+      </div>
 
-      <select-field
-        v-model="form.country"
-        id="country-selectfield"
-        label="Country"
-        :option-list="countryList"
-        :error-messages="countryErrors"
-        required
-      />
+      <div class="form__row">
+        <select-field
+          v-model="form.country"
+          id="country-selectfield"
+          label="Country"
+          :option-list="countryList"
+          :error-messages="countryErrors"
+          required
+        />
+      </div>
 
-      <text-field
-        v-model="form.address"
-        type="text"
-        id="address-textfield"
-        label="Address"
-        :value="form.address"
-        :error-messages="addressErrors"
-        required
-      />
+      <div class="form__row">
+        <text-field
+          v-model="form.address"
+          type="text"
+          id="address-textfield"
+          label="Address"
+          :value="form.address"
+          :error-messages="addressErrors"
+          required
+        />
+      </div>
 
-      <text-field
-        v-model="form.postCode"
-        type="text"
-        id="postCode-textfield"
-        label="Post Code"
-        :value="form.postCode"
-        :disabled="!isCountrySet"
-        :error-messages="postCodeErrors"
-        required
-      />
+      <div class="form__row">
+        <text-field
+          v-model="form.postCode"
+          type="text"
+          id="postCode-textfield"
+          label="Post Code"
+          :value="form.postCode"
+          :disabled="!isCountrySet"
+          :error-messages="postCodeErrors"
+          required
+        />
+      </div>
 
       <slot />
     </form>

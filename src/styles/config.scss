@@ -7,8 +7,12 @@ $responsive-breakpoints: (
 
 /* Base styles */
 $page-bg:                       #fff;
-$base-color:                    #161a21;
-$link-color:                    #03594f;
+$base-color:                    rgba(51, 51, 51, 1);
+$secondary-color:               rgba(51, 51, 51, 0.5);
+$highlight-color:               rgba(255, 54, 154, 255);
+$basic-box-shadow-color:        rgba(51, 51, 51, 0.5);
+$basic-border-color:            rgba(51, 51, 51, 0.1);
+$link-color:                    rgba(1, 164, 248, 255);
 
 /* Form components */
 $base-input-color:                rgba(51, 51, 51, 1);

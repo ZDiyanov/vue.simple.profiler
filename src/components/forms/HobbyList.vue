@@ -1,15 +1,27 @@
 <template>
-  <div>
-    <text-field
-      v-model="hobby"
-      type="text"
-      id="first-name-textfield"
-      label="Hobby"
-      :value="hobby"
-      :error-messages="hobbyErrors"
-    />
+  <div class="form">
+    <div class="form__row">
+      <text-field
+        v-model="hobby"
+        type="text"
+        id="first-name-textfield"
+        label="Hobby"
+        :value="hobby"
+        :error-messages="hobbyErrors"
+      />
+    </div>
 
-    <a href="#" @click.prevent="addHobby()">Add hobby</a>
+    <div class="form__row">
+      <a href="#" @click.prevent="addHobby()">Add hobby</a>
+    </div>
+
+    <form @submit.prevent="onSubmit" novalidate>
+      <input type="hidden" v-model="form">
+      <slot />
+      <div class="form__row">
+        <span v-if="hobbyListErrors">{{ hobbyListErrors[0] }}</span>
+      </div>
+    </form>
 
     <div v-if="hasHobbies">
       <p>Hobbies:</p>
@@ -22,12 +34,6 @@
         </li>
       </ul>
     </div>
-
-    <form @submit.prevent="onSubmit" novalidate>
-      <input type="hidden" v-model="form">
-      <span v-if="hobbyListErrors">{{ hobbyListErrors[0] }}</span>
-      <slot />
-    </form>
   </div>
 </template>
 

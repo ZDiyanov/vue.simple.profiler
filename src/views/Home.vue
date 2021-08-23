@@ -1,6 +1,9 @@
 <template>
-  <div>
-    <p>Profile Logger Home</p>
+  <div class="display__content">
+    <div class="title">
+      <p class="title__main">Welcome</p>
+      <span class="title__lead">This is a small demo app for MODIS</span>
+    </div>
 
     <router-link to="/create">Log a new user profile</router-link>
 

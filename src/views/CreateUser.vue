@@ -1,21 +1,36 @@
 <template>
-  <div>
-    <p>CreateUser</p>
+  <div class="display__content">
+    <div class="title">
+      <p class="title__main">Create Profile</p>
+      <span class="title__lead">Let's add some information</span>
+    </div>
 
     <component
       :is="stepComponent"
       :form="stepSubject"
       @validate-step="checkStepStatus"
     >
-      <a
-        v-if="stepCounter"
-        href="#"
-        @click.prevent="modifyStepCount()"
-      >
-        Back to previous step
-      </a>
+      <div class="control-bar">
+        <div>
+          <button class="control-bar__button">{{ isLastStep ? 'Create Profile' : 'Next Step' }}</button>
+        </div>
 
-      <button>Validate</button>
+        <a
+          v-if="stepCounter"
+          href="#"
+          class="control-bar__link"
+          @click.prevent="modifyStepCount()"
+        >
+          Back to previous step
+        </a>
+        <router-link
+          v-else
+          to="/"
+          class="control-bar__link"
+        >
+          Back to home
+        </router-link>
+      </div>
     </component>
   </div>
 </template>
@@ -78,6 +93,9 @@
             return this.user.personal;
         }
       },
+      isLastStep() {
+        return this.stepCounter === 2;
+      }
     },
     methods: {
       checkStepStatus({ isValid }) {

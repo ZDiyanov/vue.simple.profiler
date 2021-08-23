@@ -233,6 +233,7 @@ export default {
 
     &__error {
       padding: 4px 10px 0;
+      text-align: left;
 
       span {
         font-size: 1rem;

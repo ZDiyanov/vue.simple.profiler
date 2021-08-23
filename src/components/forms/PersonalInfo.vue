@@ -1,35 +1,41 @@
 <template>
-  <div>
+  <div class="form">
     <form @submit.prevent="onSubmit" novalidate>
-      <text-field
-        v-model="form.firstName"
-        type="text"
-        id="first-name-textfield"
-        label="First Name"
-        :value="form.firstName"
-        :error-messages="firstNameErrors"
-        required
-      />
+      <div class="form__row">
+        <text-field
+          v-model="form.firstName"
+          type="text"
+          id="first-name-textfield"
+          label="First Name"
+          :value="form.firstName"
+          :error-messages="firstNameErrors"
+          required
+        />
+      </div>
 
-      <text-field
-        v-model="form.lastName"
-        type="text"
-        id="last-name-textfield"
-        label="Last Name"
-        :value="form.lastName"
-        :error-messages="lastNameErrors"
-        required
-      />
+      <div class="form__row">
+        <text-field
+          v-model="form.lastName"
+          type="text"
+          id="last-name-textfield"
+          label="Last Name"
+          :value="form.lastName"
+          :error-messages="lastNameErrors"
+          required
+        />
+      </div>
 
-      <text-field
-        v-model="form.birthday"
-        type="text"
-        id="birthday-textfield"
-        label="Date of Birth"
-        :value="form.birthday"
-        :error-messages="birthdayErrors"
-        required
-      />
+      <div class="form__row">
+        <text-field
+          v-model="form.birthday"
+          type="text"
+          id="birthday-textfield"
+          label="Date of Birth"
+          :value="form.birthday"
+          :error-messages="birthdayErrors"
+          required
+        />
+      </div>
 
       <slot />
     </form>
