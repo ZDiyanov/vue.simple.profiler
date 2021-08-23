@@ -6,6 +6,7 @@ export default {
         firstName: '',
         middleName: '',
         lastName: '',
+        birthday: '',
       },
       contact: {
         phone: '',

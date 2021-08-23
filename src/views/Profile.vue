@@ -7,10 +7,10 @@
 
       <ul>
         <li
-          v-for="(item, index) in userProfile.contact"
+          v-for="(item, key, index) in userProfile.contact"
           :key="index"
         >
-          {{ item }}
+          {{ key === 'country' ? countryList[item].name : item }}
         </li>
       </ul>
     </div>
@@ -38,6 +38,8 @@
 </template>
 
 <script>
+  import countryList from '@/configs/countries';
+
   export default {
     computed: {
       userProfile() {
@@ -48,6 +50,11 @@
 
         return `${firstName} ${middleName} ${lastName}`;
       }
+    },
+    data() {
+      return {
+        countryList
+      };
     },
     methods: {
       switchUserProfile() {

@@ -40,7 +40,8 @@
     components: { TextField },
     validations: {
       hobby: {
-        minLength: minLength(5),
+        required,
+        minLength: minLength(3),
       },
       form: {
         required,
@@ -54,8 +55,11 @@
         if (!this.$v.hobby.$dirty) {
           return errors;
         }
+        if (!this.$v.hobby.required) {
+          errors.push('The hobby field is empty');
+        }
         if (!this.$v.hobby.minLength) {
-          errors.push('The hobby must be atleast 5 simbols');
+          errors.push('The hobby must be atleast 3 simbols');
         }
 
         return errors;

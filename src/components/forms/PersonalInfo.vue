@@ -21,13 +21,24 @@
         required
       />
 
+      <text-field
+        v-model="form.birthday"
+        type="text"
+        id="birthday-textfield"
+        label="Date of Birth"
+        :value="form.birthday"
+        :error-messages="birthdayErrors"
+        required
+      />
+
       <slot />
     </form>
   </div>
 </template>
 
 <script>
-  import { required } from 'vuelidate/lib/validators';
+  import { required, helpers } from 'vuelidate/lib/validators';
+  import { getAge } from '@/utils';
   import TextField from '@/components/base/TextField';
 
   export default {
@@ -39,6 +50,16 @@
         },
         lastName: {
           required,
+        },
+        birthday: {
+          required,
+          dateOfBirth(value) {
+            const format = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+            return !helpers.req(value) || format.test(value);
+          },
+          ageLimit(value) {
+            return !helpers.req(value) || getAge(value) >= 15;
+          },
         },
       }
     },
@@ -63,6 +84,24 @@
         }
         if (!this.$v.form.lastName.required) {
           errors.push('Last Name is required');
+        }
+
+        return errors;
+      },
+      birthdayErrors() {
+        const errors = [];
+
+        if (!this.$v.form.birthday.$dirty) {
+          return errors;
+        }
+        if (!this.$v.form.birthday.required) {
+          errors.push('Date of Birth is required');
+        }
+        if (!this.$v.form.birthday.dateOfBirth) {
+          errors.push('Date of Birth format is invalid (MM/DD/YYYY)');
+        }
+        if (!this.$v.form.birthday.ageLimit) {
+          errors.push('You must be 15 years or older');
         }
 
         return errors;

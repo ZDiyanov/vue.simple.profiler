@@ -17,8 +17,6 @@
 
       <button>Validate</button>
     </component>
-
-    <!-- <a href="#" @click.prevent="setUserProfile">set dummy user profile</a> -->
   </div>
 </template>
 
@@ -42,6 +40,7 @@
             firstName: '',
             middleName: '',
             lastName: '',
+            birthday: '',
           },
           contact: {
             country: '',
@@ -52,21 +51,6 @@
           hobbies: [],
         },
         stepCounter: 0,
-        dummyUser: {
-          id: uid(),
-          name: {
-            first: 'Zhivko',
-            middle: 'Diyanov',
-            last: 'Hinkov',
-          },
-          contact: {
-            country: 'Bulgaria',
-            postCode: '9300',
-            address: 'Some street, 1D',
-            phone: '+359877113307',
-          },
-          hobbies: ['Boxing', 'Basketball'],
-        },
       };
     },
     computed: {
