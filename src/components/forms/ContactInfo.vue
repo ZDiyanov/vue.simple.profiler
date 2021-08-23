@@ -11,6 +11,14 @@
         required
       />
 
+      <select-field
+        v-model="form.country"
+        id="country-selectfield"
+        label="Country"
+        :option-list="dummyList"
+        required
+      />
+
       <slot />
     </form>
   </div>
@@ -19,9 +27,13 @@
 <script>
   import { required } from 'vuelidate/lib/validators';
   import TextField from '@/components/base/TextField';
+  import SelectField from '@/components/base/SelectField';
 
   export default {
-    components: { TextField },
+    components: {
+      TextField,
+      SelectField,
+    },
     validations: {
       form: {
         address: {
@@ -52,6 +64,7 @@
     data() {
       return {
         isValid: null,
+        dummyList: ['Bulgaria', 'United States'],
       };
     },
     methods: {
