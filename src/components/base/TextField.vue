@@ -37,7 +37,7 @@
       v-if="hasErrors"
       class="textfield__error"
     >
-      <span class="text-danger">{{ errorMessages[0] }}</span>
+      <span>{{ errorMessages[0] }}</span>
     </div>
   </div>
 </template>

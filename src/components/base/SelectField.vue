@@ -53,7 +53,7 @@
     </div>
 
     <div v-if="hasErrors" class="selectfield__error">
-      <span class="text-danger">{{ errorMessages[0] }}</span>
+      <span>{{ errorMessages[0] }}</span>
     </div>
   </div>
 </template>
@@ -272,6 +272,7 @@ export default {
 
       span {
         font-size: 1rem;
+        color: $base-input-color-error;
       }
     }
   }
