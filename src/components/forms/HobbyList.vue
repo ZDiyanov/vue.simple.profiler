@@ -23,16 +23,26 @@
       </div>
     </form>
 
-    <div v-if="hasHobbies">
-      <p>Hobbies:</p>
-      <ul>
-        <li
+    <div class="list">
+      <div :class="['list__item', counterColoring]">
+        {{hasHobbies ? `Your hobbies: ${hobbyCount}` : 'You have no hobbies, you should find some ;)' }}
+      </div>
+      <template v-if="hasHobbies">
+        <div
           v-for="(item, index) in form"
           :key="index"
+          class="list__item"
         >
           {{ item }}
-        </li>
-      </ul>
+          <a
+            href="#"
+            @click.prevent="removeHobby(item)"
+            class="list__remove"
+          >
+            Remove
+          </a>
+        </div>
+      </template>
     </div>
   </div>
 </template>
@@ -85,6 +95,21 @@
       hasHobbies() {
         return isNonEmptyArr(this.form);
       },
+      hobbyCount() {
+        return this.form.length;
+      },
+      counterColoring() {
+        const { hobbyCount } = this;
+        const prefix = 'list__counter--stage-';
+        let colorClass;
+
+        if (hobbyCount === 0) colorClass = `${prefix}1`;
+        if (hobbyCount >= 1) colorClass = `${prefix}2`;
+        if (hobbyCount >= 5) colorClass = `${prefix}3`;
+        if (hobbyCount >= 10) colorClass = `${prefix}4`;
+
+        return colorClass;
+      }
     },
     props: {
       form: {
@@ -109,6 +134,14 @@
 
         this.form.push(this.hobby);
         this.hobby = '';
+        this.$nextTick(() => { this.$v.hobby.$reset(); });
+      },
+      removeHobby(item) {
+        const index = this.form.indexOf(item);
+
+        if (index > -1) {
+          this.form.splice(index, 1);
+        }
       },
       onSubmit() {
         this.$v.form.$touch();

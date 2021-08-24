@@ -93,10 +93,13 @@
     padding-top: 20px;
 
     &__button {
+      display: block;
       width: 200px;
       height: 40px;
-      margin-bottom: 10px;
+      margin: 0 auto;
       background: $highlight-color;
+      text-align: center;
+      line-height: 40px;
       color: white;
       font-weight: bold;
       text-transform: uppercase;
@@ -108,6 +111,35 @@
 
     &__link {
       font-size: 0.8rem;
+    }
+
+    div {
+      margin-top: 10px;
+    }
+  }
+
+  .list {
+    max-width: 400px;
+    margin: 0 auto;
+
+    &__item {
+      position: relative;;
+      padding: 10px 4px;
+      text-align: left;
+      font-size: 0.8rem;
+      border-bottom: 1px solid $basic-border-color;
+    }
+
+    &__remove {
+      position: absolute;
+      right: 10px;
+    }
+
+    &__counter {
+      &--stage-1 { color: red; }
+      &--stage-2 { color: orange; }
+      &--stage-3 { color: yellowgreen; }
+      &--stage-4 { color: green; }
     }
   }
 </style>

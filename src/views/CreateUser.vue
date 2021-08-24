@@ -11,25 +11,25 @@
       @validate-step="checkStepStatus"
     >
       <div class="control-bar">
-        <div>
-          <button class="control-bar__button">{{ isLastStep ? 'Create Profile' : 'Next Step' }}</button>
-        </div>
+        <button class="control-bar__button">{{ isLastStep ? 'Create Profile' : 'Next Step' }}</button>
 
-        <a
-          v-if="stepCounter"
-          href="#"
-          class="control-bar__link"
-          @click.prevent="modifyStepCount()"
-        >
-          Back to previous step
-        </a>
-        <router-link
-          v-else
-          to="/"
-          class="control-bar__link"
-        >
-          Back to home
-        </router-link>
+        <div>
+          <a
+            v-if="stepCounter"
+            href="#"
+            class="control-bar__link"
+            @click.prevent="modifyStepCount()"
+          >
+            Back to previous step
+          </a>
+          <router-link
+            v-else
+            to="/"
+            class="control-bar__link"
+          >
+            Back to home
+          </router-link>
+        </div>
       </div>
     </component>
   </div>

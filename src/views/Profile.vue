@@ -1,45 +1,25 @@
 <template>
-  <div>
-    <p>{{ fullName }}</p>
-
-    <div>
-      <p>Contact Info:</p>
-
-      <ul>
-        <li
-          v-for="(item, key, index) in userProfile.contact"
-          :key="index"
-        >
-          {{ key === 'country' ? countryList[item].name : item }}
-        </li>
-      </ul>
+  <div class="display__content">
+    <div class="title">
+      <p class="title__main">{{ fullName }}</p>
+      <span class="title__lead">Check the console for full list of profile details</span>
     </div>
 
-    <div>
-      <p>Hobbies:</p>
-
-      <ul>
-        <li
-          v-for="(item, index) in userProfile.hobbies"
-          :key="index"
+    <div class="control-bar">
+      <div>
+        <a
+          href="#"
+          class="control-bar__button"
+          @click.prevent="switchUserProfile"
         >
-          {{ item }}
-        </li>
-      </ul>
+          Logout
+        </a>
+      </div>
     </div>
-
-    <a
-      href="#"
-      @click.prevent="switchUserProfile"
-    >
-      logout
-    </a>
   </div>
 </template>
 
 <script>
-  import countryList from '@/configs/countries';
-
   export default {
     computed: {
       userProfile() {
@@ -51,10 +31,8 @@
         return `${firstName} ${middleName} ${lastName}`;
       }
     },
-    data() {
-      return {
-        countryList
-      };
+    created() {
+      console.log(this.userProfile);
     },
     methods: {
       switchUserProfile() {

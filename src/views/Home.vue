@@ -7,13 +7,13 @@
 
     <router-link to="/create">Log a new user profile</router-link>
 
-    <div v-if="hasStoredProfiles">
-      <p>Logged User Profiles:</p>
-
-      <ul>
-        <li
+    <div class="profiles-list" v-if="hasStoredProfiles">
+      <div class="list">
+        <div class="list__item">Logged User Profiles:</div>
+        <div
           v-for="(item, index) in profilesList"
           :key="index"
+          class="list__item"
         >
           <a
             href="#"
@@ -21,8 +21,8 @@
           >
             {{ `${item.personal.firstName} ${item.personal.lastName}` }}
           </a>
-        </li>
-      </ul>
+        </div>
+      </div>
 
       <a
         href="#"
@@ -67,3 +67,13 @@
     },
   };
 </script>
+
+<style lang="scss">
+  .profiles-list {
+    margin-top: 40px;
+
+    .list {
+      margin-bottom: 10px;
+    }
+  }
+</style>
