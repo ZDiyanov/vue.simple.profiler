@@ -1,4 +1,4 @@
-# app.modis
+# A simple profiler app
 
 ## Project setup
 ```
